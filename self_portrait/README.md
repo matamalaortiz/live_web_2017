@@ -2,4 +2,8 @@
 
 Interactive Self Portrait.
 
-Take a Self Portrait image everytime the users clicks on the wrong gmail bookmark. 
+Take a Self Portrait image every time the users clicks on the wrong gmail bookmark.
+
+- Requires:
+
+• config.js (firebase)
