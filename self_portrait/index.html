@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Inbox(4)</title>
+  <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+  <style>
+    #flash {
+      background-color: white;
+      position: absolute;
+      z-index: 4;
+      width: 99%;
+      height: 100%;
+      opacity: 0;
+    }
+
+    h1 {
+      color: #ffffff;
+      position: absolute;
+      font-size: 228px;
+      font-family: apercu;
+      opacity: 0;
+      animation: flashazo 3s 1;
+      top: -170px;
+      left: 410px;
+    }
+
+    @keyframes flashazo {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="flash"></div>
+  <h1>SMILE !!</h1>
+  <div class="contentarea">
+    <div class="camera">
+      <video id="video">Video stream not available.</video>
+    </div>
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+  <script type="text/jscript" src="config.js"></script>
+  <script type="text/jscript" src="script.js"></script>
+</body>
+
+</html>
