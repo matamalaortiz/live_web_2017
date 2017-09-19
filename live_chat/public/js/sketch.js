@@ -8,7 +8,6 @@ var client = new ClientJS(); // Get info of clients.
 var browser =  client.getBrowser();
 var os = client.getOS();
 var screenp = client.getCurrentResolution();
-
 var mouseName = null;
 
 function setup() {
@@ -109,7 +108,6 @@ function mousePos_server(data_mouse){
         //console.log(mouseName.children[i].attributes[0].value);
         if(mouseName.children[i].attributes[0].value == data_mouse.person){
           mouseName.children[i].style.color = color;
-
           mouseName.insertBefore(mouseName.children[i], mouseName.children[0]);
 
           return;
@@ -127,12 +125,11 @@ function mousePos_server(data_mouse){
 }
 
 function cleanUpList(){
-    mouseName.innerHTML = "";
-    setTimeout(function(){
-      cleanUpList();
-    },10000);
+  mouseName.innerHTML = "";
+  setTimeout(function(){
+    cleanUpList();
+  },10000);
 }
-
 
 
 // [] of all users connected
@@ -173,14 +170,7 @@ function gotFile(file) {
     left: randomLeft,
     person: person
   }
- // Positioning Img
-  // var img = createImg(file.data);
-  // img.addClass('imagenDropeada');
-  // img.style("width", randomWidth + '%');
-  // img.style("top", randomTop + '%');
-  // img.style("left", randomLeft + '%');
-  // img.attribute("text", "una foto x");
-  // console.log(file.data);
+
 
   // Send IMG to server
   socket.emit('dropped_img', data)
@@ -192,9 +182,6 @@ function gotFile(file) {
 //   socket.emit('user_disconnect', data)
 //
 // });
-
-
-
 
 // Highlight when user is over the canvas with the IMG
 function highlight() {
