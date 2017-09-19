@@ -9,12 +9,17 @@ var browser =  client.getBrowser();
 var os = client.getOS();
 var screenp = client.getCurrentResolution();
 
+var mouseName = null;
+
 function setup() {
   createCanvas(100, 100);
   dropzone = select('#dropzone');
   dropzone.dragOver(highlight);
   dropzone.dragLeave(unhighlight);
   dropzone.drop(gotFile, unhighlight);
+
+  mouseName = document.getElementById("mouseName");
+  cleanUpList();
 }
 
 
@@ -87,21 +92,48 @@ function mouseMoved(data) {
 }
 
 
+
 function mousePos_server(data_mouse){
   var line4 = document.getElementById("line4");
 
   // console.log(data_mouse.move);
   var moving = data_mouse.move;
+  //console.log(moving);
 
   if (moving === true) {
-    var colors = ["red", "aqua", "burlywood"];
+    var colors = ["blue", "aqua", "burlywood", "black"];
     var color = colors[Math.floor(Math.random()*colors.length)];
 
-    line4.innerHTML = data_mouse.person + " is" ; // Who dropped the image?
-    line4.style.color = color;
-  }
 
+      for(i=0; i < mouseName.children.length; i++){
+        //console.log(mouseName.children[i].attributes[0].value);
+        if(mouseName.children[i].attributes[0].value == data_mouse.person){
+          mouseName.children[i].style.color = color;
+
+          mouseName.insertBefore(mouseName.children[i], mouseName.children[0]);
+
+          return;
+        }
+      }
+
+          var newPerson = document.createElement("li");
+          newPerson.setAttribute("name", data_mouse.person);
+          newPerson.innerHTML = data_mouse.person + " is moving the mouse";
+          newPerson.style.color = color;
+          mouseName.appendChild(newPerson);
+    // line4.innerHTML = data_mouse.person + " is moving the mouse" ; // Who dropped the image?
+    // line4.style.color = color;
+  }
 }
+
+function cleanUpList(){
+    mouseName.innerHTML = "";
+    setTimeout(function(){
+      cleanUpList();
+    },10000);
+}
+
+
 
 // [] of all users connected
 function allusers(data){
@@ -113,7 +145,7 @@ function allusers(data){
   // var userOnlinefromServer = data.customId;
   // onle
   var usersDom =document.getElementById('users');
-  usersDom.innerHTML = "connected : " + clientsOnline.join(' / ') ;
+  usersDom.innerHTML = "connected : " + clientsOnline.join(' 💧 ') ;
 
   // console.log(clientsOnline.length);
 

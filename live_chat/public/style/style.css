@@ -16,12 +16,24 @@ html, body {
 }
 
 h1 {
-    padding: 25%;
+    padding-top: 25%;
+    font-family: sans-serif;
+    color: #b4dcff;
+    text-transform: capitalize;
+}
+
+ul#mouseName {
+  padding: 47px;
+  position: absolute;
+  list-style-type: none;
+  top: 6%;
+  text-transform: unset;
+  font-family: sans-serif;
 }
 
 #dropzone {
   position: absolute;
-  padding: 47px;
+  padding-top: 47px;
   border-bottom: 9px solid white;
   color: white;
   background-color: rgba(255, 255, 255, 0);
@@ -31,13 +43,12 @@ h1 {
 }
 
 p#line1 {
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-family: sans-serif;
   letter-spacing: 1px;
-  color: gold;
-  font-weight: 500;
-  font-size: 22px;
-  position: absolute;
+  color: #035067;
+  font-weight: bold;
+  font-size: 13px;
   width: 100%;
 }
 
@@ -63,8 +74,11 @@ h1#line4 {
   position: absolute;
   padding: 47px;
   margin-top: 4.5%;
-  font-family: monospace;
+  font-family: sans-serif;
+  letter-spacing: 1px;
   color: red;
+  font-size: 16px;
+  width: 100%;
 }
 
 span {
@@ -91,10 +105,11 @@ p#clients {
 }
 
 marquee#users {
-  font-size: 17px;
+  font-size: 15px;
   text-transform: capitalize;
   position: absolute;
   bottom: 2%;
+  font-family: sans-serif;
 }
 
 h1#clienteOn {
