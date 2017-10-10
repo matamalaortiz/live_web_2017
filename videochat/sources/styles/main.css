@@ -1,0 +1,7 @@
+body, html {
+  margin: 2%;
+  padding: 2%;
+}
+
+button {border: none;}
+#quit {margin-top: 20%;}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>FAAAAAACE TIME</title>
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="styles/tachyons.css" />
+  <script src="http://cdn.peerjs.com/0.3/peer.js"></script>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="row" id="video-container">
+      <video id="their_video" autoplay width="100%"></video><br>
+      <video id="my-video" muted="true" autoplay width="100%"></video>
+    </div>
+
+    <div class="row">
+
+      <div id="media-container">
+        <p></p>
+        <div id="media-error">
+          <p></p>
+        </div>
+      </div>
+
+      <div id="info-peer-container">
+        <p>Your id: <span id="my-id">...</span></p>
+        <p>Share the id with the other peer</p>
+        <h3>Call Someone</h3>
+        <div>
+          <input type="text" placeholder="Call user id..." id="callto-id">
+          <a href="#" class="f6 link dim br1 ba bw1 ph3 pv2 mb2 dib black" id="make-call">Call Other Peer</a>
+        </div>
+      </div>
+
+      <div id="call-container">
+        <p>In a Call with<span id="their-id">...</span></p>
+        <p><a href="#" class="f6 link dim br1 ph3 pv2 mb2 dib white bg-black" id="end-call">End call</a></p>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="f6 link dim br1 ph3 pv2 mb2 dib white bg-black" id="quit">Close App</button>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>

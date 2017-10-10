@@ -1,0 +1,31 @@
+{
+  "name": "faaace",
+  "version": "1.0.0",
+  "description": "faaace",
+  "main": "main.js",
+  "scripts": {
+    "test": "standard",
+    "build": "browserify /sources/js/aspp.js > bundle.js",
+    "start": "electron ."
+  },
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "browserify": "^14.4.0",
+    "electron": "~1.7.8",
+    "electron-package": "^0.1.0",
+    "electron-prebuilt": "^1.4.13",
+    "standard": "^10.0.3",
+    "tachyons": "^4.8.1"
+  },
+  "dependencies": {
+    "peerjs": "^0.3.14"
+  }
+}
