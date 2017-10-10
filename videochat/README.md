@@ -2,13 +2,21 @@
 
 ## Create peerjs Key
 
-• Add file keys.js in /sources/js and include:
+• Create a ./sources/keys.js file and include:
 
-`var keys = {}
+```ts
+var keys = {}
 
 module.exports = keys
 
 keys.app = {
-  peer: 'your-apu-key'
+  peer: 'your-api-key'
 }
-`
+```
+
+```bash
+npm install
+
+npm start
+
+```
