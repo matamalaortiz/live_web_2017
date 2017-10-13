@@ -3,7 +3,7 @@ var http = require('http');
 var fs = require('fs'); // Using the filesystem module
 var httpServer = http.createServer(requestHandler);
 var url = require('url');
-httpServer.listen(3000);
+httpServer.listen(7000);
 
 function requestHandler(req, res) {
 
@@ -30,7 +30,7 @@ function requestHandler(req, res) {
   	*/
 }
 
-console.log('server running in port 3000' );
+console.log('server running in port 7000' );
 
 // WebSocket Portion
 // WebSockets work with the HTTP server
