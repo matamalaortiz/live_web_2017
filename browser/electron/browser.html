@@ -2,7 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="browser.css">
-    <script src="browser.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
     <title>PAIR BROWSER</title>
   <body>
     <div id="controls">
@@ -56,10 +56,12 @@
     </div>
 
     <div id="footer-bar">
-      <input type="text" placeholder=":text here">
+      <input type="text" id="message" name="message" placeholder=": Text Here">
+      <input type="submit" value="submit" onclick="sendmessage(document.getElementById('message').value);">
       <hr>
-      <input type="text" placeholder=":text response">
-
     </div>
+    
+    <script src="browser.js"></script>
+
   </body>
 </html>

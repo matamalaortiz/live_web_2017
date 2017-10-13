@@ -7,23 +7,24 @@ var isLoading = false;
 onload = function() {
 
 
-	var socket = io.connect('http://104.131.4.201:8080');
+	var socket = io.connect('http://104.131.4.201:3000/');
 
 	socket.on('connect', function() {
 		console.log("Connected");
 	});
 
-   // 		// Receive from any event
-   // 		socket.on('chatmessage', function (data) {
-   // 			console.log(data);
-   // 			document.getElementById('messages').innerHTML = "" + data +
-   // + "" + document.getElementById('messages').innerHTML;
-   // 		});
-   //
-   // 		var sendmessage = function(message) {
-   // 			console.log("chatmessage: " + message);
-   // 			socket.emit('chatmessage', message);
-   // 		};
+   		// Receive from any event
+   		socket.on('chatmessage', function (data) {
+   			console.log(data);
+   			document.getElementById('messages').innerHTML = "" + data +
+   + "" + document.getElementById('messages').innerHTML;
+   		});
+
+   		var sendmessage = function(message) {
+   			console.log("chatmessage: " + message);
+   			socket.emit('chatmessage', message);
+   		};
+      
   var webview = document.querySelector('webview');
   doLayout();
 

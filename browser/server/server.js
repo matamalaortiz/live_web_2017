@@ -3,7 +3,7 @@ var http = require('http');
 var fs = require('fs'); // Using the filesystem module
 var httpServer = http.createServer(requestHandler);
 var url = require('url');
-httpServer.listen(8080);
+httpServer.listen(3000);
 
 function requestHandler(req, res) {
 
@@ -30,7 +30,7 @@ function requestHandler(req, res) {
   	*/
 }
 
-console.log('server running in port 8080' );
+console.log('server running in port 3000' );
 
 // WebSocket Portion
 // WebSockets work with the HTTP server
@@ -53,6 +53,15 @@ io.sockets.on('connection',
 			socket.broadcast.emit('chatmessage', data);
 		});
 
+
+		// When this user emits, client side: socket.emit('otherevent',some data);
+		socket.on('location', function(data) {
+			// Data comes in as whatever was sent, including objects
+			console.log("Received: location " + data);
+
+			// Send it to all of the clients
+			socket.broadcast.emit('location', data);
+		});
 
 		socket.on('disconnect', function() {
 			console.log("Client has disconnected " + socket.id);

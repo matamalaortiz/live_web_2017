@@ -1,9 +1,30 @@
+var socket, sendmessage;
+
 window.onresize = doLayout;
 var isLoading = false;
 
 onload = function() {
   var webview = document.querySelector('webview');
   doLayout();
+
+  socket = io.connect("http://104.131.4.201:3000");
+
+  socket.on('connect', function() {
+    console.log("Connected");
+  });
+
+  // Receive from any event
+  socket.on('chatmessage', function (data) {
+    console.log(data);
+    document.getElementById('messages').innerHTML = "" + data +
++ "" + document.getElementById('messages').innerHTML;
+  });
+
+  sendmessage = function(message) {
+    console.log("chatmessage: " + message);
+    socket.emit('chatmessage', message);
+  };
+
 
   // document.querySelector('#back').onclick = function() {
   //   webview.goBack();
@@ -34,7 +55,16 @@ onload = function() {
 
   document.querySelector('#location-form').onsubmit = function(e) {
     e.preventDefault();
-    navigateTo(document.querySelector('#location').value);
+
+    let locInput = document.querySelector('#location').value
+    socket.emit('location', locInput);
+    socket.on('location', function (data) {
+      console.log(data);
+      navigateTo(data);
+
+    });
+
+    // navigateTo(document.querySelector('#location').value);
   };
 
   webview.addEventListener('close', handleExit);
