@@ -7,7 +7,7 @@ onload = function() {
   var webview = document.querySelector('webview');
   doLayout();
 
-  socket = io.connect("http://104.131.4.201:3000");
+  socket = io.connect("http://104.131.4.201:7000");
 
   socket.on('connect', function() {
     console.log("Connected");
@@ -58,7 +58,7 @@ onload = function() {
 
     let locInput = document.querySelector('#location').value
     socket.emit('location', locInput);
-    socket.on('location', function (data) {
+    socket.on('location_from_server', function (data) {
       console.log(data);
       navigateTo(data);
 
