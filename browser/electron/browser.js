@@ -1,4 +1,5 @@
-var socket, sendmessage;
+var socket, sendmessage, sendNewUrl;
+socket = io.connect("http://165.227.66.228:7000");
 
 window.onresize = doLayout;
 var isLoading = false;
@@ -7,7 +8,6 @@ onload = function() {
   var webview = document.querySelector('webview');
   doLayout();
 
-  socket = io.connect("http://104.131.4.201:7000");
 
   socket.on('connect', function() {
     console.log("Connected");
@@ -25,6 +25,7 @@ onload = function() {
     console.log("chatmessage: " + message);
     socket.emit('chatmessage', message);
   };
+
 
 
   // document.querySelector('#back').onclick = function() {
@@ -59,16 +60,14 @@ onload = function() {
 
     let locInput = document.querySelector('#location').value
     socket.emit('location', locInput);
-
-    socket.on('location', function (data) {
-      console.log(data);
-      navigateTo(data);
-    });
-
     // navigateTo(document.querySelector('#location').value);
   };
 
 
+  socket.on('location', function (data) {
+    console.log('location ' + data);
+    navigateTo(data);
+  });
 
 
   webview.addEventListener('close', handleExit);
@@ -190,6 +189,7 @@ function doLayout() {
   var webviewWidth = windowWidth;
   var webviewHeight = windowHeight - controlsHeight;
 
+
   webview.style.width = webviewWidth + 'px';
   webview.style.height = webviewHeight + 'px';
 
@@ -278,11 +278,33 @@ function handleKeyDown(event) {
 function handleLoadCommit() {
   resetExitedState();
   var webview = document.querySelector('webview');
+  var pastUrl = document.querySelector('#location').value;
+
   document.querySelector('#location').value = webview.getURL();
+  // console.log(pastUrl + " " + document.querySelector('#location').value );
+
+  if(pastUrl != document.querySelector('#location').value){
+    console.log("not equal");
+
+      let newURL = document.querySelector('#location').value;
+      console.log(newURL);
+      socket.emit('newlocation', newURL);
+
+
+      socket.on('newlocation', function (data) {
+        console.log('new location ' + data);
+        navigateTo(data);
+      });
+  }
+
   // document.querySelector('#back').disabled = !webview.canGoBack();
   // document.querySelector('#forward').disabled = !webview.canGoForward();
   closeBoxes();
 }
+
+
+
+
 
 function handleLoadStart(event) {
   document.body.classList.add('loading');

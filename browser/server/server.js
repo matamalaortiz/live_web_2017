@@ -55,6 +55,11 @@ io.sockets.on('connection',
 			io.sockets.emit('location', data);
 		});
 
+		socket.on('newlocation', function(data) {
+			console.log("Received: new location " + data);
+			io.sockets.emit('newlocation', data);
+		});
+
 		socket.on('disconnect', function() {
 			console.log("Client has disconnected " + socket.id);
 		});
