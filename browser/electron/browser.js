@@ -15,9 +15,10 @@ onload = function() {
 
   // Receive from any event
   socket.on('chatmessage', function (data) {
-    console.log(data);
-    document.getElementById('messages').innerHTML = "" + data +
-+ "" + document.getElementById('messages').innerHTML;
+    console.log('from server:' + data);
+//     document.getElementById('messages').innerHTML = "" + data +
+// + "" + document.getElementById('messages').innerHTML;
+
   });
 
   sendmessage = function(message) {
@@ -58,14 +59,17 @@ onload = function() {
 
     let locInput = document.querySelector('#location').value
     socket.emit('location', locInput);
-    socket.on('location_from_server', function (data) {
+
+    socket.on('location', function (data) {
       console.log(data);
       navigateTo(data);
-
     });
 
     // navigateTo(document.querySelector('#location').value);
   };
+
+
+
 
   webview.addEventListener('close', handleExit);
   webview.addEventListener('did-start-loading', handleLoadStart);
