@@ -47,12 +47,12 @@ io.sockets.on('connection',
 		// When this user emits, client side: socket.emit('otherevent',some data);
 		socket.on('chatmessage', function(data) {
 			console.log("Received: 'chatmessage' " + data);
-			io.socket.emit('chatmessage', data);
+			io.sockets.emit('chatmessage', data);
 		});
 
 		socket.on('location', function(data) {
 			console.log("Received: location " + data);
-			io.socket.emit('location', data);
+			io.sockets.emit('location', data);
 		});
 
 		socket.on('disconnect', function() {

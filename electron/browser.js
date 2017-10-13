@@ -7,7 +7,7 @@ var isLoading = false;
 onload = function() {
 
 
-	var socket = io.connect('http://104.131.4.201:3000/');
+	var socket = io.connect('http://104.131.4.201:7000/');
 
 	socket.on('connect', function() {
 		console.log("Connected");
@@ -24,7 +24,7 @@ onload = function() {
    			console.log("chatmessage: " + message);
    			socket.emit('chatmessage', message);
    		};
-      
+
   var webview = document.querySelector('webview');
   doLayout();
 
