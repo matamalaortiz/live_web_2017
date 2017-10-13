@@ -46,21 +46,13 @@ io.sockets.on('connection',
 
 		// When this user emits, client side: socket.emit('otherevent',some data);
 		socket.on('chatmessage', function(data) {
-			// Data comes in as whatever was sent, including objects
 			console.log("Received: 'chatmessage' " + data);
-
-			// Send it to all of the clients
-			socket.broadcast.emit('chatmessage', data);
+			io.socket.emit('chatmessage', data);
 		});
 
-
-		// When this user emits, client side: socket.emit('otherevent',some data);
 		socket.on('location', function(data) {
-			// Data comes in as whatever was sent, including objects
 			console.log("Received: location " + data);
-
-			// Send it to all of the clients
-			socket.broadcast.emit('location', data);
+			io.socket.emit('location', data);
 		});
 
 		socket.on('disconnect', function() {
