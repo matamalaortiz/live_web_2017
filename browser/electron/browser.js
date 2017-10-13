@@ -1,10 +1,11 @@
-var socket, sendmessage, sendNewUrl;
+var socket, sendmessage, sendNewUrl, currentURL;
 socket = io.connect("http://165.227.66.228:7000");
 
 window.onresize = doLayout;
 var isLoading = false;
 
 onload = function() {
+  var currentLink = "";
   var webview = document.querySelector('webview');
   doLayout();
 
@@ -25,6 +26,21 @@ onload = function() {
     console.log("chatmessage: " + message);
     socket.emit('chatmessage', message);
   };
+
+  socket.on('newlocation', function (link) {
+    // console.log("link " + link);
+    // navigateTo(data);
+    // navigateTo(link);
+    currentLink = link;
+    if(currentLink != "" ){
+      navigateTo(currentLink);
+      console.log("hello");
+    }
+  });
+
+
+
+
 
 
 
@@ -58,24 +74,37 @@ onload = function() {
   document.querySelector('#location-form').onsubmit = function(e) {
     e.preventDefault();
 
-    let locInput = document.querySelector('#location').value
+    let locInput = document.querySelector('#location').value;
+    currUrl =
     socket.emit('location', locInput);
     // navigateTo(document.querySelector('#location').value);
   };
 
 
-  socket.on('location', function (data) {
-    console.log('location ' + data);
-    navigateTo(data);
+
+  socket.on('location', function (input) {
+    // console.log('location ' + input);
+    // navigateTo(input);
+    currentLink = input;
+    if(currentLink != "" ){
+      navigateTo(currentLink);
+      console.log("hello");
+    }
   });
 
 
-  webview.addEventListener('close', handleExit);
-  webview.addEventListener('did-start-loading', handleLoadStart);
-  webview.addEventListener('did-stop-loading', handleLoadStop);
-  webview.addEventListener('did-fail-load', handleLoadAbort);
-  webview.addEventListener('did-get-redirect-request', handleLoadRedirect);
-  webview.addEventListener('did-finish-load', handleLoadCommit);
+
+
+  //webview.addEventListener('close', handleExit);
+  // webview.addEventListener('did-start-loading', handleLoadStart);
+  // webview.addEventListener('did-stop-loading', handleLoadStop);
+  // webview.addEventListener('did-fail-load', handleLoadAbort);
+  // webview.addEventListener('did-get-redirect-request', handleLoadRedirect);
+   webview.addEventListener('did-finish-load', handleLoadCommit);
+  // webview.addEventListener('did-finish-load', function(){
+  //   console.log('done', document.getElementById('location').value);
+  // });
+
 
   // Test for the presence of the experimental <webview> zoom and find APIs.
   if (typeof(webview.setZoom) == "function" &&
@@ -278,23 +307,17 @@ function handleKeyDown(event) {
 function handleLoadCommit() {
   resetExitedState();
   var webview = document.querySelector('webview');
-  var pastUrl = document.querySelector('#location').value;
+  let pastUrl = document.getElementById('location').value;
 
   document.querySelector('#location').value = webview.getURL();
   // console.log(pastUrl + " " + document.querySelector('#location').value );
+  let newUrl = document.getElementById('location').value;
 
-  if(pastUrl != document.querySelector('#location').value){
-    console.log("not equal");
-
-      let newURL = document.querySelector('#location').value;
-      console.log(newURL);
-      socket.emit('newlocation', newURL);
-
-
-      socket.on('newlocation', function (data) {
-        console.log('new location ' + data);
-        navigateTo(data);
-      });
+  if(pastUrl != newUrl){
+    console.log("not equal", pastUrl, newUrl);
+    // let url = document.querySelector('#location').value;
+  socket.emit('newlocation', newUrl);
+  pastUrl = newUrl;
   }
 
   // document.querySelector('#back').disabled = !webview.canGoBack();
