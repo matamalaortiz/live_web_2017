@@ -19,7 +19,7 @@ const  mustacheExpress = require('mustache-express');
 
 
 const  bodyParser = require('body-parser');
-const  PORT = process.env.PORT || 3000;
+const  PORT = 7000;
 
 // MIDDLEWARE
 app.use(bodyParser.json());
@@ -45,6 +45,6 @@ io.on('connection', socket => {
 
 // SERVER OPEN IN PORT 3000
 server.listen(PORT, () => {
-  var port = server.address().port;
+  var port = 7000;
   console.log('running at ' + port);
 });
