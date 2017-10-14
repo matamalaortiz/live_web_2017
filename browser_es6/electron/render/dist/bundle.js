@@ -154,7 +154,7 @@ exports.loadBrowser = loadBrowser;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var socket = io.connect("http://165.227.66.228:7000");
+var socket = io.connect("http://165.227.66.228:3000");
 
 exports.socket = socket;
 
