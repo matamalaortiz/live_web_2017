@@ -45,6 +45,6 @@ io.on('connection', socket => {
 
 // SERVER OPEN IN PORT 3000
 server.listen(PORT, () => {
-  let port = server.address().port;
+  var port = server.address().port;
   console.log('running at ' + port);
 });
