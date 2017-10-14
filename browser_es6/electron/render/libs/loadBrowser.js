@@ -22,7 +22,7 @@ let loadBrowser = onload = function() {
   // Receive from any event
   socket.on('chatmessage', function (data) {
     console.log('from server:' + data);
-    ui.chat.response.innerText = "| " + socket.id + " : " + data;
+    ui.chat.response.innerHTML = "<span style='color:#e0bbbb'> | " + socket.id  + " : " + " " + " </span> " + data;
     ui.chat.message.value = ""
 
   });

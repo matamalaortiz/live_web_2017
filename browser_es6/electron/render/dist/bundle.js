@@ -119,7 +119,7 @@ var loadBrowser = onload = function onload() {
   // Receive from any event
   _socket.socket.on('chatmessage', function (data) {
     console.log('from server:' + data);
-    _ui.ui.chat.response.innerText = "| " + _socket.socket.id + " : " + data;
+    _ui.ui.chat.response.innerHTML = "<span style='color:#e0bbbb'> | " + _socket.socket.id + " : " + " " + " </span> " + data;
     _ui.ui.chat.message.value = "";
   });
 
