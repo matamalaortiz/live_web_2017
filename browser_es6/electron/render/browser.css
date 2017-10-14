@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Lucida Grande, Arial, sans-serif;
+  font-family: Interface;
 }
 
 button,
@@ -11,16 +11,37 @@ input {
 
 #controls {
   padding: 3px;
+  top: 0;
+  width: 100%;
   border-bottom: solid 1px #ccc;
   background-color: #eee;
+  position: fixed;
 }
 
 #controls button,
 #controls input {
   font-size: 14px;
   line-height: 24px;
-  border-radius: 2px;
-  padding: 0 6px;
+  font-size: 10px;
+  color: #191515;
+  line-height: 24px;
+  border: none;
+  background-color: #efefef;
+  padding-left: 10px;
+  font-family: interface;
+  letter-spacing: 1px;
+}
+
+#url {
+  font-size: 11px;
+  color: #797979;
+  padding: 7px 0px 0px 8px;
+}
+
+#msg {
+  font-size: 11px;
+  color: #797979;
+  padding: 12px 0px 0px 8px;
 }
 
 button,
@@ -42,14 +63,11 @@ input[type="submit"]:active {
   background: -webkit-linear-gradient(bottom, #e2e2e2 0%, #bbbbbb 99%);
 }
 
-
-#controls,
-#controls #terminate {
-  font-size: 24px;
+webview {
+  margin-top: 60px;
 }
 
 #location {
-  border: solid 1px #ccc;
   padding: 2px;
   width: 100%;
   -webkit-box-sizing: border-box;
@@ -70,26 +88,34 @@ input[type="submit"]:active {
   -webkit-flex: 1;
 }
 
-#footer-bar {
-  position: absolute;
-  bottom: 0;
-  background-color: #191515;
-  border-top: .5px solid white;
+#chat-bar {
+  position: fixed;
+  display: -webkit-flex;
+  top: 30px;
+  background-color: #ffffff;
+  border-bottom: .5px solid #efefef;
   width: 100%;
-  padding: 2% 0 2% 0;
+  height: 37px;
   margin-left: 0%;
 }
 
-#footer-bar input[type="text"] {
-  background-color: #191515;
+#chat-bar input[type="text"] {
+  background-color: #ffffff;
   border: none;
-  color: white;
-  width: 60%;
-  font-family: monospace;
-  margin-left :2%;
+  color: #191515;
+  width: 40%;
+  font-family: interface;
+  margin-left: 6px;
 }
 
-#footer-bar hr {
-  margin: 2%;
-  border-width: 0.001em;
+p#response {
+  background-color: #ffffff;
+  border: none;
+  color: #191515;
+  width: 45%;
+  font-family: interface;
+  margin-left: 2%;
+  font-size: 11px;
+  -webkit-flex: 1;
+  display: -webkit-flex;
 }

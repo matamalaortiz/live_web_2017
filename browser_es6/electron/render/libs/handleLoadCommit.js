@@ -1,4 +1,6 @@
 import { ui } from './ui';
+import { socket } from './socket';
+
 
 let handleLoadCommit = function handleLoadCommit() {
   let pastUrl = ui.controls.location.value;

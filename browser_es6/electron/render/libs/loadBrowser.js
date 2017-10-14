@@ -12,9 +12,9 @@ let loadBrowser = onload = function() {
     console.log("Connected");
   });
 
-  ui.footer.submitMessage.onclick = function(e) {
+  ui.chat.chatBar.onsubmit = function(e) {
     e.preventDefault();
-    let msg = ui.footer.message.value;
+    let msg = ui.chat.message.value;
     console.log(msg);
     socket.emit('chatmessage', msg);
   };
@@ -22,6 +22,9 @@ let loadBrowser = onload = function() {
   // Receive from any event
   socket.on('chatmessage', function (data) {
     console.log('from server:' + data);
+    ui.chat.response.innerText = "| " + socket.id + " : " + data;
+    ui.chat.message.value = ""
+
   });
 
 
@@ -35,7 +38,7 @@ let loadBrowser = onload = function() {
 
   ui.controls.locationForm.onsubmit = function(e) {
     e.preventDefault();
-    let locInput = document.querySelector('#location').value;
+    let locInput = ui.controls.location.value;
     socket.emit('location', locInput);
   };
 

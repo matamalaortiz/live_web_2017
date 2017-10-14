@@ -65,6 +65,8 @@ exports.handleLoadCommit = undefined;
 
 var _ui = require('./ui');
 
+var _socket = require('./socket');
+
 var handleLoadCommit = function handleLoadCommit() {
   var pastUrl = _ui.ui.controls.location.value;
 
@@ -74,14 +76,14 @@ var handleLoadCommit = function handleLoadCommit() {
 
   if (pastUrl != newUrl) {
     console.log("not equal", pastUrl, newUrl);
-    socket.emit('newlocation', newUrl);
+    _socket.socket.emit('newlocation', newUrl);
     pastUrl = newUrl;
   }
 };
 
 exports.handleLoadCommit = handleLoadCommit;
 
-},{"./ui":7}],5:[function(require,module,exports){
+},{"./socket":6,"./ui":7}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -107,9 +109,9 @@ var loadBrowser = onload = function onload() {
     console.log("Connected");
   });
 
-  _ui.ui.footer.submitMessage.onclick = function (e) {
+  _ui.ui.chat.chatBar.onsubmit = function (e) {
     e.preventDefault();
-    var msg = _ui.ui.footer.message.value;
+    var msg = _ui.ui.chat.message.value;
     console.log(msg);
     _socket.socket.emit('chatmessage', msg);
   };
@@ -117,6 +119,8 @@ var loadBrowser = onload = function onload() {
   // Receive from any event
   _socket.socket.on('chatmessage', function (data) {
     console.log('from server:' + data);
+    _ui.ui.chat.response.innerText = "| " + _socket.socket.id + " : " + data;
+    _ui.ui.chat.message.value = "";
   });
 
   _socket.socket.on('newlocation', function (link) {
@@ -128,7 +132,7 @@ var loadBrowser = onload = function onload() {
 
   _ui.ui.controls.locationForm.onsubmit = function (e) {
     e.preventDefault();
-    var locInput = document.querySelector('#location').value;
+    var locInput = _ui.ui.controls.location.value;
     _socket.socket.emit('location', locInput);
   };
 
@@ -163,15 +167,19 @@ Object.defineProperty(exports, "__esModule", {
 var ui = {};
 
 ui.controls = {
+  url: document.getElementById('url'),
   locationForm: document.getElementById('location-form'),
   centerColumn: document.getElementById('center-column'),
   location: document.getElementById('location')
 };
 
-ui.footer = {
-  footerBar: document.getElementById('footer-bar'),
+ui.chat = {
+  msg: document.getElementById('msg'),
+  chatBar: document.getElementById('chat-bar'),
   message: document.getElementById('message'),
-  submitMessage: document.getElementById('submit-message')
+  submitMessage: document.getElementById('submit-message'),
+  response: document.getElementById('response')
+
 };
 
 ui.webview = {

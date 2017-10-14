@@ -10,10 +10,10 @@
     <div id="controls">
 
       <form id="location-form">
+        <span id="url">| url &nbsp : </span>
         <div id="center-column">
           <input id="location" type="text" value="http://matamala.info/">
         </div>
-        <input type="submit" value="Share">
       </form>
 
     </div>
@@ -21,11 +21,11 @@
     <webview src="http://matamala.info" style="width:140px; height:80px"></webview>
 
 
-    <div id="footer-bar">
-      <input type="text" id="message" name="message" placeholder=": Text Here">
-      <input type="submit" id="submit-message" value="submit" >
-      <hr>
-    </div>
+    <form id="chat-bar">
+      <span id="msg">| msg : </span>
+      <input type="text" id="message" name="message" placeholder="Text Here">
+      <p id='response'></p>
+    </form>
 
     <script src="./dist/bundle.js"></script>
 
