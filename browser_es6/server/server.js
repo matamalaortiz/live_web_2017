@@ -24,10 +24,6 @@ function requestHandler(req, res) {
   		}
   	);
 
-  	/*
-  	res.writeHead(200);
-  	res.end("Life is wonderful");
-  	*/
 }
 
 console.log('server running in port 7000' );
