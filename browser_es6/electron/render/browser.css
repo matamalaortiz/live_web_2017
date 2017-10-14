@@ -1,0 +1,95 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Lucida Grande, Arial, sans-serif;
+}
+
+button,
+input {
+  outline: none;
+}
+
+#controls {
+  padding: 3px;
+  border-bottom: solid 1px #ccc;
+  background-color: #eee;
+}
+
+#controls button,
+#controls input {
+  font-size: 14px;
+  line-height: 24px;
+  border-radius: 2px;
+  padding: 0 6px;
+}
+
+button,
+input[type="submit"],
+button[disabled]:hover {
+  border: solid 1px transparent;
+  background: transparent;
+}
+
+button:hover,
+input[type="submit"]:hover {
+  border-color: #ccc;
+  background: -webkit-linear-gradient(bottom, #cccccc 0%, #f2f2f2 99%);
+}
+
+button:active,
+input[type="submit"]:active {
+  border-color: #bbb;
+  background: -webkit-linear-gradient(bottom, #e2e2e2 0%, #bbbbbb 99%);
+}
+
+
+#controls,
+#controls #terminate {
+  font-size: 24px;
+}
+
+#location {
+  border: solid 1px #ccc;
+  padding: 2px;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+}
+
+#controls {
+  display: -webkit-flex;
+  -webit-flex-direction: column;
+}
+
+#controls #location-form {
+  -webkit-flex: 1;
+  display: -webkit-flex;
+  -webit-flex-direction: column;
+}
+
+#controls #center-column {
+  -webkit-flex: 1;
+}
+
+#footer-bar {
+  position: absolute;
+  bottom: 0;
+  background-color: #191515;
+  border-top: .5px solid white;
+  width: 100%;
+  padding: 2% 0 2% 0;
+  margin-left: 0%;
+}
+
+#footer-bar input[type="text"] {
+  background-color: #191515;
+  border: none;
+  color: white;
+  width: 60%;
+  font-family: monospace;
+  margin-left :2%;
+}
+
+#footer-bar hr {
+  margin: 2%;
+  border-width: 0.001em;
+}

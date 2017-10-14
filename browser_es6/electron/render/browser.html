@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="browser.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+  <title>PAIR BROWSER</title>
+
+  <body>
+    <div id="controls">
+
+      <form id="location-form">
+        <div id="center-column">
+          <input id="location" type="text" value="http://matamala.info/">
+        </div>
+        <input type="submit" value="Share">
+      </form>
+
+    </div>
+
+    <webview src="http://matamala.info" style="width:140px; height:80px"></webview>
+
+
+    <div id="footer-bar">
+      <input type="text" id="message" name="message" placeholder=": Text Here">
+      <input type="submit" id="submit-message" value="submit" >
+      <hr>
+    </div>
+
+    <script src="./dist/bundle.js"></script>
+
+  </body>
+
+</html>
