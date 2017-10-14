@@ -43,6 +43,7 @@ console.log('server running in port 7000' );
 
 // WebSocket Portion
 // WebSockets work with the HTTP server
+// var io = require('socket.io').listen(httpServer);
 
 // Register a callback function to run when we have an individual connection
 // This is run for each individual user that connects
@@ -73,3 +74,10 @@ io.sockets.on('connection',
 		});
 	}
 );
+
+
+// SERVER OPEN IN PORT 3000
+server.listen(PORT, () => {
+  var port = 7000;
+  console.log('running at ' + port);
+});
