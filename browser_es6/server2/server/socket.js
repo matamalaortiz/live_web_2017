@@ -29,4 +29,29 @@ module.exports = socket => {
 
   });
 
+
+	console.log("We have a new client: " + socket.id);
+
+	// When this user emits, client side: socket.emit('otherevent',some data);
+	socket.on('chatmessage', function(data) {
+		console.log("Received: 'chatmessage' " + data);
+		io.sockets.emit('chatmessage', data);
+	});
+
+	socket.on('location', function(data) {
+		console.log("Received: location " + data);
+		io.sockets.emit('location', data);
+	});
+
+	socket.on('newlocation', function(data) {
+		console.log("Received: new location " + data);
+		io.sockets.emit('newlocation', data);
+	});
+
+	socket.on('disconnect', function() {
+		console.log("Client has disconnected " + socket.id);
+	});
+
+
+
 };
