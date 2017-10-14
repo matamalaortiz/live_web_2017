@@ -1,8 +1,8 @@
-let clients = new Set();
+var clients = new Set();
 
 module.exports = socket => {
 
-  let qtyOfClients = Array.from(clients).length;
+  var qtyOfClients = Array.from(clients).length;
 
   (() => {
     clients.add(socket.id);
