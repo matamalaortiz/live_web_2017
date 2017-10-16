@@ -1,4 +1,23 @@
 @font-face {
   font-family: myinterface;
-  src: url('./fonts/interface-Regular.ttf');
+  src: url('/fonts/interface-Regular.ttf');
+}
+
+body{
+    background: -webkit-linear-gradient(top right, #ebfcff, #ffcef5);
+    font-family: myinterface;
+    background-attachment: fixed;
+  }
+
+.center {
+  text-align: center;
+}
+
+.wrapper {
+  margin-top: 15%;
+}
+
+#user{
+  font-family: myinterface;
+  font-size: 10px;
 }

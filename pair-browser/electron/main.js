@@ -7,7 +7,7 @@ app.on('window-all-closed', function() {
 });
 
 app.on('ready', function() {
-  mainWindow = new BrowserWindow({width: 1480, height: 960 });
+  mainWindow = new BrowserWindow({width: 1130, height: 810 });
   mainWindow.loadURL('file://' + __dirname + '/render/browser.html');
   // mainWindow.openDevTools();
 });
