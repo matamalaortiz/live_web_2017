@@ -15,6 +15,7 @@ let loadBrowser = onload = function() {
   ui.user.userBar.onsubmit = function(e) {
     e.preventDefault();
     let userName = ui.user.name.value;
+    socket.id = userName;
     ui.user.userBar.style.display = "none";
     ui.chat.chatBar.style.display = "-webkit-flex";
     socket.emit('nameuser', userName);
