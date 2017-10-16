@@ -19,7 +19,7 @@ const  mustacheExpress = require('mustache-express');
 
 
 const  bodyParser = require('body-parser');
-const  PORT = 8080;
+const  PORT = 80;
 
 // MIDDLEWARE
 app.use(bodyParser.json());
@@ -83,6 +83,6 @@ io.sockets.on('connection',
 
 // SERVER OPEN IN PORT 3000
 server.listen(PORT, () => {
-  var port = 8080;
+  var port = 80;
   console.log('running at ' + port);
 });

@@ -62,7 +62,6 @@ let loadBrowser = onload = function() {
   });
 
    ui.webview.webview.addEventListener('did-finish-load', handleLoadCommit);
-   vimeoPlugin();
 
 };
 

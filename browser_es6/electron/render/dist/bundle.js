@@ -141,7 +141,6 @@ var loadBrowser = onload = function onload() {
   });
 
   _ui.ui.webview.webview.addEventListener('did-finish-load', _handleLoadCommit.handleLoadCommit);
-  vimeoPlugin();
 };
 
 exports.loadBrowser = loadBrowser;
@@ -152,7 +151,7 @@ exports.loadBrowser = loadBrowser;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var socket = io.connect("http://165.227.66.228:7000");
+var socket = io.connect("http://165.227.66.228:8080");
 
 exports.socket = socket;
 
