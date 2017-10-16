@@ -23,19 +23,22 @@ let loadBrowser = onload = function() {
 
   ui.chat.chatBar.onsubmit = function(e) {
     e.preventDefault();
-    let msg = ui.chat.message.value;
+    let msg = {
+      id : userName,
+      msg: ui.chat.message.value
+    }
     console.log(msg);
     socket.emit('chatmessage', msg);
   };
 
   socket.on('user', function(userServer){
-    socket.id = userServer;
+    // socket.id = userServer;
   });
 
   // Receive from any event
   socket.on('chatmessage', function (data) {
     console.log('from server:' + data);
-    ui.chat.response.innerHTML = "<span style='color:#e0bbbb'> | " + socket.id  + " : " + " " + " </span> " + data;
+    ui.chat.response.innerHTML = "<span style='color:#e0bbbb'> | " + data.id  + " : " + " " + " </span> " + data.msg;
     ui.chat.message.value = "";
   });
 
