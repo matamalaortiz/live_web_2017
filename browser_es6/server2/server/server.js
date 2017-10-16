@@ -59,7 +59,7 @@ io.sockets.on('connection',
 			io.sockets.emit('chatmessage', data);
 		});
 
-    socket.on('user', function(user) {
+    socket.on('nameuser', function(user) {
       console.log("user texted: " + user);
       io.sockets.emit('user', user);
     });
