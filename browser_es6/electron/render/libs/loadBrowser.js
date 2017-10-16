@@ -28,16 +28,15 @@ let loadBrowser = onload = function() {
     socket.emit('chatmessage', msg);
   };
 
-  var userWhoTexted;
   socket.on('user', function(userServer){
-    userWhoTexted = userServer;
+    socket.id = userServer;
   });
 
   // Receive from any event
   socket.on('chatmessage', function (data) {
     console.log('from server:' + data);
-    ui.chat.response.innerHTML = "<span style='color:#e0bbbb'> | " + userWhoTexted  + " : " + " " + " </span> " + data;
-    ui.chat.message.value = ""
+    ui.chat.response.innerHTML = "<span style='color:#e0bbbb'> | " + socket.id  + " : " + " " + " </span> " + data;
+    ui.chat.message.value = "";
   });
 
 
