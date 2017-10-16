@@ -24,16 +24,12 @@ let loadBrowser = onload = function() {
   ui.chat.chatBar.onsubmit = function(e) {
     e.preventDefault();
     let msg = {
-      id : userName,
+      id : socket.id,
       msg: ui.chat.message.value
     }
     console.log(msg);
     socket.emit('chatmessage', msg);
   };
-
-  socket.on('user', function(userServer){
-    // socket.id = userServer;
-  });
 
   // Receive from any event
   socket.on('chatmessage', function (data) {

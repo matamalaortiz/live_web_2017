@@ -112,6 +112,7 @@ var loadBrowser = onload = function onload() {
   _ui.ui.user.userBar.onsubmit = function (e) {
     e.preventDefault();
     var userName = _ui.ui.user.name.value;
+    _socket.socket.id = userName;
     _ui.ui.user.userBar.style.display = "none";
     _ui.ui.chat.chatBar.style.display = "-webkit-flex";
     _socket.socket.emit('nameuser', userName);
@@ -119,20 +120,22 @@ var loadBrowser = onload = function onload() {
 
   _ui.ui.chat.chatBar.onsubmit = function (e) {
     e.preventDefault();
-    var msg = _ui.ui.chat.message.value;
+    var msg = {
+      id: _socket.socket.id,
+      msg: _ui.ui.chat.message.value
+    };
     console.log(msg);
     _socket.socket.emit('chatmessage', msg);
   };
 
-  var userWhoTexted;
   _socket.socket.on('user', function (userServer) {
-    userWhoTexted = userServer;
+    // socket.id = userServer;
   });
 
   // Receive from any event
   _socket.socket.on('chatmessage', function (data) {
     console.log('from server:' + data);
-    _ui.ui.chat.response.innerHTML = "<span style='color:#e0bbbb'> | " + userWhoTexted + " : " + " " + " </span> " + data;
+    _ui.ui.chat.response.innerHTML = "<span style='color:#e0bbbb'> | " + data.id + " : " + " " + " </span> " + data.msg;
     _ui.ui.chat.message.value = "";
   });
 

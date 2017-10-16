@@ -52,6 +52,10 @@ module.exports = socket => {
 		console.log("Client has disconnected " + socket.id);
 	});
 
+  socket.on('user', function(userServer){
+    console.log("Client has connected " + userServer);
+  });
+
 
 
 };
