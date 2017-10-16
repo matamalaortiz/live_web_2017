@@ -39,7 +39,7 @@ app.get('/', function(req, res) {
 });
 
 
-console.log('server running in port 7000' );
+console.log('server running in port 80' );
 
 // WebSocket Portion
 // WebSockets work with the HTTP server

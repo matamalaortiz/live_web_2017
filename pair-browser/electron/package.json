@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "browserify render/libs/loadBrowser.js -o ./render/dist/bundle.js -t [ babelify --presets [ es2015 ]"
+    "build": "browserify render/browser.js -o ./render/dist/bundle.js -t [ babelify --presets [ es2015 ]"
   },
   "repository": "",
   "keywords": [
