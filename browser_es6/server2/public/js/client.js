@@ -1,5 +1,8 @@
 let socket;
 
+let $svg = $('svg').drawsvg();
+
+$svg.drawsvg('animate');
 socket = io.connect(); // Listen for sockets
 
 socket.on('clients_from_server', clientsConnected);
