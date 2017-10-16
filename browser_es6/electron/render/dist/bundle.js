@@ -13,7 +13,9 @@ var _goTo = require('./libs/goTo');
 
 var _handleLoadCommit = require('./libs/handleLoadCommit');
 
-},{"./libs/createLayout":2,"./libs/goTo":3,"./libs/handleLoadCommit":4,"./libs/loadBrowser":5,"./libs/socket":6,"./libs/ui":7}],2:[function(require,module,exports){
+var _vimeoPlugin = require('./libs/vimeoPlugin');
+
+},{"./libs/createLayout":2,"./libs/goTo":3,"./libs/handleLoadCommit":4,"./libs/loadBrowser":5,"./libs/socket":6,"./libs/ui":7,"./libs/vimeoPlugin":8}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -101,6 +103,8 @@ var _goTo = require('./goTo');
 
 var _handleLoadCommit = require('./handleLoadCommit');
 
+var _vimeoPlugin = require('./vimeoPlugin');
+
 var loadBrowser = onload = function onload() {
   var currentLink = "";
   (0, _createLayout.createLayout)();
@@ -127,10 +131,6 @@ var loadBrowser = onload = function onload() {
     console.log(msg);
     _socket.socket.emit('chatmessage', msg);
   };
-
-  _socket.socket.on('user', function (userServer) {
-    // socket.id = userServer;
-  });
 
   // Receive from any event
   _socket.socket.on('chatmessage', function (data) {
@@ -160,11 +160,12 @@ var loadBrowser = onload = function onload() {
   });
 
   _ui.ui.webview.webview.addEventListener('did-finish-load', _handleLoadCommit.handleLoadCommit);
+  (0, _vimeoPlugin.vimeoPlugin)();
 };
 
 exports.loadBrowser = loadBrowser;
 
-},{"./createLayout":2,"./goTo":3,"./handleLoadCommit":4,"./socket":6,"./ui":7}],6:[function(require,module,exports){
+},{"./createLayout":2,"./goTo":3,"./handleLoadCommit":4,"./socket":6,"./ui":7,"./vimeoPlugin":8}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -209,4 +210,26 @@ ui.webview = {
 
 exports.ui = ui;
 
-},{}]},{},[1]);
+},{}],8:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.vimeoPlugin = undefined;
+
+var _ui = require("./ui");
+
+var vimeoPlugin = function vimeoPlugin() {
+
+  var url = _ui.ui.controls.location.value.split("://")[1].split("/")[1];
+  console.log(url);
+
+  if (url === "vimeo.com") {
+    console.log("hello vimeo");
+  }
+};
+
+exports.vimeoPlugin = vimeoPlugin;
+
+},{"./ui":7}]},{},[1]);

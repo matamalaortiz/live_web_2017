@@ -4,6 +4,9 @@ import { socket } from './socket';
 import { goTo } from './goTo';
 import { handleLoadCommit } from './handleLoadCommit';
 
+import { vimeoPlugin } from './vimeoPlugin';
+
+
 let loadBrowser = onload = function() {
   var currentLink = "";
   createLayout();
@@ -30,6 +33,7 @@ let loadBrowser = onload = function() {
     console.log(msg);
     socket.emit('chatmessage', msg);
   };
+
 
   // Receive from any event
   socket.on('chatmessage', function (data) {
@@ -61,6 +65,8 @@ let loadBrowser = onload = function() {
   });
 
    ui.webview.webview.addEventListener('did-finish-load', handleLoadCommit);
+   vimeoPlugin();
+
 };
 
 

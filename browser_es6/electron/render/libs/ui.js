@@ -19,7 +19,7 @@ ui.chat = {
 ui.user = {
   nameSpan: document.getElementById('name-span'),
   name: document.getElementById('name-user'),
-  userBar: document.getElementById('user-bar')
+  userBar: document.getElementById('user-bar'),
 }
 
 ui.webview = {
