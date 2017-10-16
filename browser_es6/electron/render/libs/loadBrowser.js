@@ -4,9 +4,6 @@ import { socket } from './socket';
 import { goTo } from './goTo';
 import { handleLoadCommit } from './handleLoadCommit';
 
-import { vimeoPlugin } from './vimeoPlugin';
-
-
 let loadBrowser = onload = function() {
   var currentLink = "";
   createLayout();

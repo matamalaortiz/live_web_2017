@@ -1,23 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
-var _ui = require('./libs/ui');
-
-var _socket = require('./libs/socket');
-
-var _loadBrowser = require('./libs/loadBrowser');
-
-var _createLayout = require('./libs/createLayout');
-
-var _goTo = require('./libs/goTo');
-
-var _handleLoadCommit = require('./libs/handleLoadCommit');
-
-var _vimeoPlugin = require('./libs/vimeoPlugin');
-
-},{"./libs/createLayout":2,"./libs/goTo":3,"./libs/handleLoadCommit":4,"./libs/loadBrowser":5,"./libs/socket":6,"./libs/ui":7,"./libs/vimeoPlugin":8}],2:[function(require,module,exports){
-'use strict';
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -41,7 +24,7 @@ window.onresize = createLayout;
 
 exports.createLayout = createLayout;
 
-},{"./ui":7}],3:[function(require,module,exports){
+},{"./ui":6}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -57,7 +40,7 @@ var goTo = function goTo(url) {
 
 exports.goTo = goTo;
 
-},{"./ui":7}],4:[function(require,module,exports){
+},{"./ui":6}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -85,7 +68,7 @@ var handleLoadCommit = function handleLoadCommit() {
 
 exports.handleLoadCommit = handleLoadCommit;
 
-},{"./socket":6,"./ui":7}],5:[function(require,module,exports){
+},{"./socket":5,"./ui":6}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -102,8 +85,6 @@ var _socket = require('./socket');
 var _goTo = require('./goTo');
 
 var _handleLoadCommit = require('./handleLoadCommit');
-
-var _vimeoPlugin = require('./vimeoPlugin');
 
 var loadBrowser = onload = function onload() {
   var currentLink = "";
@@ -160,12 +141,12 @@ var loadBrowser = onload = function onload() {
   });
 
   _ui.ui.webview.webview.addEventListener('did-finish-load', _handleLoadCommit.handleLoadCommit);
-  (0, _vimeoPlugin.vimeoPlugin)();
+  vimeoPlugin();
 };
 
 exports.loadBrowser = loadBrowser;
 
-},{"./createLayout":2,"./goTo":3,"./handleLoadCommit":4,"./socket":6,"./ui":7,"./vimeoPlugin":8}],6:[function(require,module,exports){
+},{"./createLayout":1,"./goTo":2,"./handleLoadCommit":3,"./socket":5,"./ui":6}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -175,7 +156,7 @@ var socket = io.connect("http://165.227.66.228:7000");
 
 exports.socket = socket;
 
-},{}],7:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -210,26 +191,4 @@ ui.webview = {
 
 exports.ui = ui;
 
-},{}],8:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.vimeoPlugin = undefined;
-
-var _ui = require("./ui");
-
-var vimeoPlugin = function vimeoPlugin() {
-
-  var url = _ui.ui.controls.location.value.split("://")[1].split("/")[1];
-  console.log(url);
-
-  if (url === "vimeo.com") {
-    console.log("hello vimeo");
-  }
-};
-
-exports.vimeoPlugin = vimeoPlugin;
-
-},{"./ui":7}]},{},[1]);
+},{}]},{},[4]);
