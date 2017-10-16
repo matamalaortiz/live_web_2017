@@ -1,7 +1,12 @@
+@font-face {
+  font-family: myinterface;
+  src: url('./fonts/interface-Regular.ttf');
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: Interface;
+  font-family: myinterface;
 }
 
 button,
@@ -28,7 +33,7 @@ input {
   border: none;
   background-color: #efefef;
   padding-left: 10px;
-  font-family: interface;
+  font-family: myinterface;
   letter-spacing: 1px;
 }
 
@@ -111,7 +116,7 @@ webview {
   border: none;
   color: #191515;
   width: 40%;
-  font-family: interface;
+  font-family: myinterface;
   margin-left: 6px;
 }
 
@@ -131,7 +136,7 @@ webview {
   border: none;
   color: #191515;
   width: 40%;
-  font-family: interface;
+  font-family: myinterface;
   margin-left: 6px;
 }
 
@@ -141,7 +146,7 @@ p#response {
   border: none;
   color: #191515;
   width: 45%;
-  font-family: interface;
+  font-family: myinterface;
   margin-left: 2%;
   font-size: 11px;
   -webkit-flex: 1;

@@ -26,5 +26,10 @@ ui.webview = {
   webview: document.querySelector('webview')
 }
 
+ui.document = {
+  title: document.querySelector('title')
+}
+
+
 
 export { ui }

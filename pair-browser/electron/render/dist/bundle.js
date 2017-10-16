@@ -79,6 +79,8 @@ var handleLoadCommit = function handleLoadCommit() {
     _socket.socket.emit('newlocation', newUrl);
     pastUrl = newUrl;
   }
+
+  _ui.ui.document.title.innerText = _ui.ui.webview.webview.getTitle();
 };
 
 exports.handleLoadCommit = handleLoadCommit;
@@ -201,6 +203,10 @@ ui.user = {
 
 ui.webview = {
   webview: document.querySelector('webview')
+};
+
+ui.document = {
+  title: document.querySelector('title')
 };
 
 exports.ui = ui;

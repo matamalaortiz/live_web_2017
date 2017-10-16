@@ -15,6 +15,8 @@ let handleLoadCommit = function handleLoadCommit() {
     pastUrl = newUrl;
   }
 
+ ui.document.title.innerText = ui.webview.webview.getTitle();
+
 }
 
 export { handleLoadCommit }

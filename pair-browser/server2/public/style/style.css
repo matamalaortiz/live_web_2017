@@ -1,1 +1,4 @@
-
+@font-face {
+  font-family: myinterface;
+  src: url('./fonts/interface-Regular.ttf');
+}
