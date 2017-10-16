@@ -12,6 +12,14 @@ let loadBrowser = onload = function() {
     console.log("Connected");
   });
 
+  ui.user.userBar.onsubmit = function(e) {
+    e.preventDefault();
+    let userName = ui.user.name.value;
+    ui.user.userBar.style.display = "none";
+    ui.chat.chatBar.style.display = "-webkit-flex";
+    socket.emit('nameuser', userName);
+  };
+
   ui.chat.chatBar.onsubmit = function(e) {
     e.preventDefault();
     let msg = ui.chat.message.value;
@@ -19,12 +27,16 @@ let loadBrowser = onload = function() {
     socket.emit('chatmessage', msg);
   };
 
+  var userWhoTexted;
+  socket.on('user', function(userServer){
+    userWhoTexted = userServer;
+  });
+
   // Receive from any event
   socket.on('chatmessage', function (data) {
     console.log('from server:' + data);
-    ui.chat.response.innerHTML = "<span style='color:#e0bbbb'> | " + socket.id  + " : " + " " + " </span> " + data;
+    ui.chat.response.innerHTML = "<span style='color:#e0bbbb'> | " + userWhoTexted  + " : " + " " + " </span> " + data;
     ui.chat.message.value = ""
-
   });
 
 

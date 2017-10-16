@@ -14,7 +14,12 @@ ui.chat = {
   message: document.getElementById('message'),
   submitMessage: document.getElementById('submit-message'),
   response: document.getElementById('response')
+}
 
+ui.user = {
+  nameSpan: document.getElementById('name-span'),
+  name: document.getElementById('name-user'),
+  userBar: document.getElementById('user-bar')
 }
 
 ui.webview = {
@@ -22,6 +27,4 @@ ui.webview = {
 }
 
 
-export {
-  ui
-}
+export { ui }

@@ -59,6 +59,11 @@ io.sockets.on('connection',
 			io.sockets.emit('chatmessage', data);
 		});
 
+    socket.on('user', function(user) {
+      console.log("user texted: " + user);
+      io.sockets.emit('user', user);
+    });
+
 		socket.on('location', function(data) {
 			console.log("Received: location " + data);
 			io.sockets.emit('location', data);
