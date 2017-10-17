@@ -1,6 +1,6 @@
 import { ui } from './ui';
 
-let createLayout = ()=> {
+let createLayout = () => {
   let controls = document.querySelector('#controls');
   let controlsHeight = controls.offsetHeight;
   let windowWidth = document.documentElement.clientWidth;
