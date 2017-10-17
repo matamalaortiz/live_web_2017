@@ -1,6 +1,5 @@
 let ui = {}
 
-
 ui.controls = {
   url: document.getElementById('url'),
   locationForm: document.getElementById('location-form'),

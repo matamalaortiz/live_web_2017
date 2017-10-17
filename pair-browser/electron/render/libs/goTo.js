@@ -1,6 +1,6 @@
 import { ui } from './ui';
 
-let goTo = function goTo(url) {
+let goTo = url => {
   ui.webview.webview.src = url;
 }
 

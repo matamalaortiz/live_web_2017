@@ -4,15 +4,15 @@ import { socket } from './socket';
 import { goTo } from './goTo';
 import { handleLoadCommit } from './handleLoadCommit';
 
-let loadBrowser = onload = function() {
+window.onload = () => {
   var currentLink = "";
   createLayout();
 
-  socket.on('connect', function() {
+  socket.on('connect',() => {
     console.log("Connected");
   });
 
-  ui.user.userBar.onsubmit = function(e) {
+  ui.user.userBar.onsubmit = e => {
     e.preventDefault();
     let userName = ui.user.name.value;
     socket.id = userName;
@@ -21,7 +21,7 @@ let loadBrowser = onload = function() {
     socket.emit('nameuser', userName);
   };
 
-  ui.chat.chatBar.onsubmit = function(e) {
+  ui.chat.chatBar.onsubmit = e => {
     e.preventDefault();
     let msg = {
       id : socket.id,
@@ -31,24 +31,21 @@ let loadBrowser = onload = function() {
     socket.emit('chatmessage', msg);
   };
 
-
   // Receive from any event
-  socket.on('chatmessage', function (data) {
+  socket.on('chatmessage', data => {
     console.log('from server:' + data);
     ui.chat.response.innerHTML = "<span style='color:#e0bbbb'> | " + data.id  + " : " + " " + " </span> " + data.msg;
     ui.chat.message.value = "";
   });
 
-
-  socket.on('newlocation', function (link) {
+  socket.on('newlocation', link => {
     currentLink = link;
     if(currentLink != "" ){
       goTo(currentLink);
     }
   });
 
-
-  ui.controls.locationForm.onsubmit = function(e) {
+  ui.controls.locationForm.onsubmit = e => {
     e.preventDefault();
     let locInput = ui.controls.location.value;
     socket.emit('location', locInput);
