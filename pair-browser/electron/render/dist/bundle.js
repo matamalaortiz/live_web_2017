@@ -6776,13 +6776,12 @@ var loadBrowser = window.onload = function () {
   _ui.ui.user.userBar.onsubmit = function (e) {
     e.preventDefault();
     userName = _ui.ui.user.name.value;
-    console.log(Peer.peerID);
     var user = {
       peerID: Peer.peerID,
       socketID: _socket.socket.id,
       userNAME: userName
-      // socket.id = socket.id; // TODO replace this
-    };_ui.ui.user.userBar.style.display = "none";
+    };
+    _ui.ui.user.userBar.style.display = "none";
     _ui.ui.chat.chatBar.style.display = "-webkit-flex";
     _socket.socket.emit('nameuser', user);
   };
@@ -6791,7 +6790,7 @@ var loadBrowser = window.onload = function () {
   _ui.ui.chat.chatBar.onsubmit = function (e) {
     e.preventDefault();
     var msg = {
-      id: _socket.socket.id,
+      id: userName,
       msg: _ui.ui.chat.message.value
     };
     console.log(msg);
@@ -6852,16 +6851,6 @@ var events = function events() {
   peer.on('signal', function (data) {
     console.log('peerConnected');
     exports.peerID = peerID = JSON.stringify(data);
-    //  let user  = {
-    //    peerId: JSON.stringify(data),
-    //    socket: socket.id,
-    //    username: loadBrowser.userName,
-    //  }
-    //  socket.emit("userInfo", user);
-    //  let opt = document.createElement('option');
-    //  opt.value = JSON.stringify(data);
-    //  opt.innerHTML = socket.id;
-    //  ui.controls.selectPeers.appendChild(opt);
   });
 };
 
@@ -6915,6 +6904,10 @@ var receiveUrl = function receiveUrl() {
 var receiveUser = function receiveUser() {
   socket.on('user', function (data) {
     console.log(data);
+    //  let opt = document.createElement('option');
+    //  opt.value = JSON.stringify(data);
+    //  opt.innerHTML = socket.id;
+    //  ui.controls.selectPeers.appendChild(opt);
   });
 };
 

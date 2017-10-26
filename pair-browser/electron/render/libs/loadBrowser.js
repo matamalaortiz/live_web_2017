@@ -32,7 +32,7 @@ let loadBrowser =  window.onload = () => {
   ui.chat.chatBar.onsubmit = e => {
     e.preventDefault();
     let msg = {
-      id : socket.id,
+      id : userName,
       msg: ui.chat.message.value
     }
     console.log(msg);
