@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="./libs/styles/browser.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+  <title>PAIR BROWSER</title>
+
+  <body>
+    <div id="controls">
+
+      <form id="location-form">
+        <span id="url">| url &nbsp : </span>
+        <div id="center-column">
+          <input id="location" type="text" value="http://am7673.itp.io/">
+        </div>
+      </form>
+
+    </div>
+
+    <webview src="http://am7673.itp.io/" style="width:140px; height:80px"></webview>
+
+    <form id="user-bar">
+      <span id="name-span">| user : </span>
+      <input type="text" id="name-user" name="nameuser" placeholder="Insert your name">
+    </form>
+
+    <form id="chat-bar">
+      <span id="msg">| msg : </span>
+      <input type="text" id="message" name="message" placeholder="Text Here">
+      <p id='response'></p>
+    </form>
+
+    <script src="./dist/bundle.js"></script>
+
+  </body>
+
+</html>

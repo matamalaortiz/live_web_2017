@@ -1,17 +1,19 @@
 import { ui } from './ui';
 import { createLayout } from './createLayout';
-import { socket } from './socket';
+import { socket }  from './socket';
+import * as Socket from './socket';
+import * as Peer from './peer';
 import { goTo } from './goTo';
 import { handleLoadCommit } from './handleLoadCommit';
 
-window.onload = () => {
+let loadBrowser =  window.onload = () => {
   var currentLink = "";
   createLayout();
 
-  socket.on('connect',() => {
-    console.log("Connected");
-  });
+  Peer.events(); //
+  Socket.socketConnection(); // Connection web sockets
 
+  // Submit User Name
   ui.user.userBar.onsubmit = e => {
     e.preventDefault();
     let userName = ui.user.name.value;
@@ -21,6 +23,7 @@ window.onload = () => {
     socket.emit('nameuser', userName);
   };
 
+  // Sumbmit Message to Chat
   ui.chat.chatBar.onsubmit = e => {
     e.preventDefault();
     let msg = {
@@ -31,34 +34,25 @@ window.onload = () => {
     socket.emit('chatmessage', msg);
   };
 
-  // Receive from any event
-  socket.on('chatmessage', data => {
-    console.log('from server:' + data);
-    ui.chat.response.innerHTML = "<span style='color:#e0bbbb'> | " + data.id  + " : " + " " + " </span> " + data.msg;
-    ui.chat.message.value = "";
-  });
-
-  socket.on('newlocation', link => {
-    currentLink = link;
-    if(currentLink != "" ){
-      goTo(currentLink);
-    }
-  });
-
+  // Submit New Uel
   ui.controls.locationForm.onsubmit = e => {
     e.preventDefault();
     let locInput = ui.controls.location.value;
-    socket.emit('location', locInput);
+    let http = "http://";
+    if(locInput.startsWith('http') != true){
+      locInput = http.concat(locInput);
+      socket.emit('location', locInput);
+    } else {
+      socket.emit('location', locInput);
+    }
   };
 
-  socket.on('location', function (input) {
-    currentLink = input;
-    if(currentLink != "" ){
-      goTo(currentLink);
-    }
-  });
+  Socket.receiveMessage(); // Receive Message from Chat.
+  Socket.receiveNewUrl(); // Receive New Url
+  Socket.receiveUrl(); // Receive Url
+  Socket.receiveUser(); // Receive User
 
-   ui.webview.webview.addEventListener('did-finish-load', handleLoadCommit);
+  ui.webview.webview.addEventListener('did-finish-load', handleLoadCommit);
 
 };
 

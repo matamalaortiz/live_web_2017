@@ -4,7 +4,8 @@ ui.controls = {
   url: document.getElementById('url'),
   locationForm: document.getElementById('location-form'),
   centerColumn: document.getElementById('center-column'),
-  location: document.getElementById('location')
+  location: document.getElementById('location'),
+  selectPeers: document.getElementById('peerIds'),
 }
 
 ui.chat = {

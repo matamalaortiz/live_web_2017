@@ -1,7 +1,7 @@
 import { ui } from './ui';
 import { socket } from './socket';
 
-let handleLoadCommit =  () => {
+let handleLoadCommit = () => {
   let pastUrl = ui.controls.location.value;
 
   ui.controls.location.value = ui.webview.webview.getURL();
