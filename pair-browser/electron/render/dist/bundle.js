@@ -6765,6 +6765,7 @@ var _handleLoadCommit = require('./handleLoadCommit');
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var loadBrowser = window.onload = function () {
+  var userName;
   var currentLink = "";
   (0, _createLayout.createLayout)();
 
@@ -6774,11 +6775,15 @@ var loadBrowser = window.onload = function () {
   // Submit User Name
   _ui.ui.user.userBar.onsubmit = function (e) {
     e.preventDefault();
-    var userName = _ui.ui.user.name.value;
-    _socket.socket.id = userName;
-    _ui.ui.user.userBar.style.display = "none";
+    userName = _ui.ui.user.name.value;
+    var user = {
+      peerID: Peer.events.peerID,
+      socketID: _socket.socket.id,
+      userNAME: userName
+      // socket.id = socket.id; // TODO replace this
+    };_ui.ui.user.userBar.style.display = "none";
     _ui.ui.chat.chatBar.style.display = "-webkit-flex";
-    _socket.socket.emit('nameuser', userName);
+    _socket.socket.emit('nameuser', user);
   };
 
   // Sumbmit Message to Chat
@@ -6841,19 +6846,20 @@ var peer = new _simplePeer2.default({
 });
 
 var events = function events() {
-
+  var peerID = void 0;
   peer.on('signal', function (data) {
-    console.log(peerConnected);
-    var user = {
-      peerId: JSON.stringify(data),
-      socket: _socket.socket.id,
-      username: userName
-    };
-    _socket.socket.emit("userInfo", user);
-    var opt = document.createElement('option');
-    opt.value = JSON.stringify(data);
-    opt.innerHTML = _socket.socket.id;
-    _ui.ui.controls.selectPeers.appendChild(opt);
+    console.log('peerConnected');
+    peerID = JSON.stringify(data);
+    //  let user  = {
+    //    peerId: JSON.stringify(data),
+    //    socket: socket.id,
+    //    username: loadBrowser.userName,
+    //  }
+    //  socket.emit("userInfo", user);
+    //  let opt = document.createElement('option');
+    //  opt.value = JSON.stringify(data);
+    //  opt.innerHTML = socket.id;
+    //  ui.controls.selectPeers.appendChild(opt);
   });
 };
 

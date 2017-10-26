@@ -7,6 +7,7 @@ import { goTo } from './goTo';
 import { handleLoadCommit } from './handleLoadCommit';
 
 let loadBrowser =  window.onload = () => {
+  var userName;
   var currentLink = "";
   createLayout();
 
@@ -16,11 +17,16 @@ let loadBrowser =  window.onload = () => {
   // Submit User Name
   ui.user.userBar.onsubmit = e => {
     e.preventDefault();
-    let userName = ui.user.name.value;
-    socket.id = userName;
+    userName = ui.user.name.value;
+    let user  = {
+      peerID: Peer.events.peerID,
+      socketID: socket.id,
+      userNAME: userName,
+    }
+    // socket.id = socket.id; // TODO replace this
     ui.user.userBar.style.display = "none";
     ui.chat.chatBar.style.display = "-webkit-flex";
-    socket.emit('nameuser', userName);
+    socket.emit('nameuser', user);
   };
 
   // Sumbmit Message to Chat

@@ -9,19 +9,20 @@ let peer = new Peer({
 })
 
 let events = () => {
-
+  let peerID;
   peer.on('signal', data => {
-     console.log(peerConnected)
-     let user  = {
-       peerId: JSON.stringify(data),
-       socket: socket.id,
-       username: userName,
-     }
-     socket.emit("userInfo", user);
-     let opt = document.createElement('option');
-     opt.value = JSON.stringify(data);
-     opt.innerHTML = socket.id;
-     ui.controls.selectPeers.appendChild(opt);
+     console.log('peerConnected')
+     peerID = JSON.stringify(data);
+    //  let user  = {
+    //    peerId: JSON.stringify(data),
+    //    socket: socket.id,
+    //    username: loadBrowser.userName,
+    //  }
+    //  socket.emit("userInfo", user);
+    //  let opt = document.createElement('option');
+    //  opt.value = JSON.stringify(data);
+    //  opt.innerHTML = socket.id;
+    //  ui.controls.selectPeers.appendChild(opt);
   })
 
 }
