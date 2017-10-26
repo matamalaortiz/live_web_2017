@@ -8,24 +8,15 @@ let peer = new Peer({
   trickle: false
 })
 
+let peerID;
+
 let events = () => {
-  let peerID;
   peer.on('signal', data => {
      console.log('peerConnected')
      peerID = JSON.stringify(data);
-    //  let user  = {
-    //    peerId: JSON.stringify(data),
-    //    socket: socket.id,
-    //    username: loadBrowser.userName,
-    //  }
-    //  socket.emit("userInfo", user);
-    //  let opt = document.createElement('option');
-    //  opt.value = JSON.stringify(data);
-    //  opt.innerHTML = socket.id;
-    //  ui.controls.selectPeers.appendChild(opt);
   })
 
 }
 
 
-export { events }
+export { events, peerID }

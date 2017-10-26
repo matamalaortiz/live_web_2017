@@ -19,11 +19,10 @@ let loadBrowser =  window.onload = () => {
     e.preventDefault();
     userName = ui.user.name.value;
     let user  = {
-      peerID: Peer.events.peerID,
+      peerID: Peer.peerID,
       socketID: socket.id,
       userNAME: userName,
     }
-    // socket.id = socket.id; // TODO replace this
     ui.user.userBar.style.display = "none";
     ui.chat.chatBar.style.display = "-webkit-flex";
     socket.emit('nameuser', user);

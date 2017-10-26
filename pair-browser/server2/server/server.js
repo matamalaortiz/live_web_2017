@@ -60,7 +60,7 @@ io.sockets.on('connection',
 		});
 
     socket.on('nameuser', function(user) {
-      console.log("user texted: " + user);
+      console.log(user);
       io.sockets.emit('user', user);
     });
 
@@ -77,6 +77,11 @@ io.sockets.on('connection',
 		socket.on('disconnect', function() {
 			console.log("Client has disconnected " + socket.id);
 		});
+
+    socket.on('userInfo', function(data) {
+      console.log("user info: " + data);
+      io.sockets.emit('userInfo', data);
+    });
 	}
 );
 

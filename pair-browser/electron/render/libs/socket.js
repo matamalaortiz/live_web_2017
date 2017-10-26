@@ -37,6 +37,10 @@ let receiveUrl = () => {
 let receiveUser = () => {
   socket.on('user', data => {
     console.log(data);
+    //  let opt = document.createElement('option');
+    //  opt.value = JSON.stringify(data);
+    //  opt.innerHTML = socket.id;
+    //  ui.controls.selectPeers.appendChild(opt);
   });
 }
 

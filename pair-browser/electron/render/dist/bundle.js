@@ -6776,8 +6776,9 @@ var loadBrowser = window.onload = function () {
   _ui.ui.user.userBar.onsubmit = function (e) {
     e.preventDefault();
     userName = _ui.ui.user.name.value;
+    console.log(Peer.peerID);
     var user = {
-      peerID: Peer.events.peerID,
+      peerID: Peer.peerID,
       socketID: _socket.socket.id,
       userNAME: userName
       // socket.id = socket.id; // TODO replace this
@@ -6826,7 +6827,7 @@ exports.loadBrowser = loadBrowser;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.events = undefined;
+exports.peerID = exports.events = undefined;
 
 var _loadBrowser = require('./loadBrowser');
 
@@ -6845,11 +6846,12 @@ var peer = new _simplePeer2.default({
   trickle: false
 });
 
+var peerID = void 0;
+
 var events = function events() {
-  var peerID = void 0;
   peer.on('signal', function (data) {
     console.log('peerConnected');
-    peerID = JSON.stringify(data);
+    exports.peerID = peerID = JSON.stringify(data);
     //  let user  = {
     //    peerId: JSON.stringify(data),
     //    socket: socket.id,
@@ -6864,6 +6866,7 @@ var events = function events() {
 };
 
 exports.events = events;
+exports.peerID = peerID;
 
 },{"./loadBrowser":33,"./socket":35,"./ui":36,"simple-peer":17}],35:[function(require,module,exports){
 'use strict';
