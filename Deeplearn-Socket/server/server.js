@@ -11,17 +11,25 @@ Alejandro Matamala
 "use strict";
 
 // DEPENDENCIES
+
+const fs = require('fs');
+const credentials = {
+  key: fs.readFileSync('./private/my-key.pem'),
+  cert: fs.readFileSync('./private/my-cert.pem')
+};
+
 const express = require('express');
 const app = express();
-const server = require('https').Server(app);
+const server = require('https').Server(credentials, app);
 const io = require('socket.io')(server);
 const path = require('path');
 const handleSocket = require('./socket');
 const  mustacheExpress = require('mustache-express');
 
 
+
 const  bodyParser = require('body-parser');
-const  PORT = process.env.PORT || 443;
+const  PORT = process.env.PORT || 3000;
 
 // MIDDLEWARE
 app.use(bodyParser.json());
