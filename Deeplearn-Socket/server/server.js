@@ -13,7 +13,7 @@ Alejandro Matamala
 // DEPENDENCIES
 const express = require('express');
 const app = express();
-const server = require('http').Server(app);
+const server = require('https').Server(app);
 const io = require('socket.io')(server);
 const path = require('path');
 const handleSocket = require('./socket');
