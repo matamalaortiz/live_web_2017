@@ -1,0 +1,32 @@
+body {
+  background-color: #345dcc;
+  background-image: url("./circles.png");
+  background-size: cover;
+  border: 20px solid white;
+  margin: 0;
+  height: 95vh;
+}
+
+div#video-container {
+  text-align: center;
+}
+
+div#form {
+    text-align: center;
+}
+
+div#center {
+  text-align: center;
+  font-size: 25px;
+  font-family: apercu;
+  color: white;
+}
+
+#my-video {
+  display: none;
+}
+
+#video {
+  width: 100vw;
+  height: 50vh;
+}
