@@ -1,3 +1,5 @@
+"use strict";
+
 let socket;
 
 socket = io.connect("https://am7673.itp.io:3000/"); // Listen for sockets

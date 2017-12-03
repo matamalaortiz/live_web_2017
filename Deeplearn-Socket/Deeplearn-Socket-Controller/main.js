@@ -9,7 +9,7 @@ var Gpio = require('onoff').Gpio,
   btn_five = new Gpio(14, 'in', 'both'),
   btn_six = new Gpio(15, 'in', 'both');
 
-var socket = require('socket.io-client')('http://localhost');
+var socket = require('socket.io-client')('https://am7673.itp.io:3000/');
 
 console.log("started");
 
