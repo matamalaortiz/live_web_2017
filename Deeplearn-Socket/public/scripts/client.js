@@ -1,6 +1,6 @@
 let socket;
 
-socket = io.connect(); // Listen for sockets
+socket = io.connect("https://am7673.itp.io:3000/"); // Listen for sockets
 
 socket.on('clients_from_server', clientsConnected);
 socket.on('clients_from_server_disconnected', clientsDisconnected);

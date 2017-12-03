@@ -21,9 +21,8 @@ const credentials = {
 const express = require('express');
 const app = express();
 const server = require('https').Server(credentials, app);
-const io = require('socket.io')(server);
+const io = require('socket.io').listen(server);
 const path = require('path');
-const handleSocket = require('./socket');
 const  mustacheExpress = require('mustache-express');
 
 
