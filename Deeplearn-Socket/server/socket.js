@@ -1,3 +1,5 @@
+"use strict";
+
 let clients = new Set();
 
 module.exports = socket => {

@@ -8,6 +8,8 @@ Alejandro Matamala
 2017
 */
 
+"use strict";
+
 // DEPENDENCIES
 const express = require('express');
 const app = express();
