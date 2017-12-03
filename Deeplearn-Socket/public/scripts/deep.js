@@ -7,6 +7,7 @@ let y = 0;
 
 
 
+
 document.addEventListener('DOMContentLoaded', function() {
 
   let video = document.getElementById('my-video');
