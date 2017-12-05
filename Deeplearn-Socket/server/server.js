@@ -20,7 +20,7 @@ const credentials = {
 
 const express = require('express');
 const app = express();
-const server = require('https').Server(credentials, app);
+const server = require('http').Server(app);
 const io = require('socket.io').listen(server);
 const path = require('path');
 const  mustacheExpress = require('mustache-express');
@@ -47,6 +47,10 @@ app.get('/', function(req, res) {
   res.render("index.mustache")
 });
 
+app.get('/client', function(req, res) {
+  res.render("client.mustache")
+});
+
 io.sockets.on('connection',
 	// We are given a websocket object in our function
 	function (socket) {
@@ -59,9 +63,9 @@ io.sockets.on('connection',
 			io.sockets.emit('position_from_server', data);
 		});
 
-    socket.on('buttonPressed', function(data) {
-      console.log("From Controllet: 'Button Presser : ' " + data);
-      io.sockets.emit('controllerr_from_server', data);
+    socket.on('controller_button', function(data) {
+      console.log("From Controller: 'Button Pressed : ' " + data);
+      io.sockets.emit('controller_from_server', data);
     });
 
 	}

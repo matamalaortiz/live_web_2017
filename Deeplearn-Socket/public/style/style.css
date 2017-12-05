@@ -2,7 +2,7 @@ body {
   background-color: #345dcc;
   background-image: url("./circles.png");
   background-size: cover;
-  border: 20px solid white;
+  /*border: 20px solid white;*/
   margin: 0;
   height: 95vh;
 }
@@ -28,5 +28,5 @@ div#center {
 
 #video {
   width: 100vw;
-  height: 50vh;
+  height: 100vh;
 }
