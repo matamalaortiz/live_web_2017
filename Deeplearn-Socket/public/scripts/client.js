@@ -1,9 +1,6 @@
 "use strict";
 
 let socket;
-var mypeerid = null;
-var peer = null;
-var connection = null;
 let startPredicting = false;
 let times = 0;
 let y = 0;
@@ -17,10 +14,71 @@ document.addEventListener('DOMContentLoaded', function() {
   socket.on('clients_from_server_disconnected', clientsDisconnected);
   socket.on('position_from_server', positionServer);
   socket.on('controller_from_server', controllerServer);
+  var urls = ["https://firebasestorage.googleapis.com/v0/b/neat-vista-141916.appspot.com/o/teach1.mp4?alt=media&token=ac853088-a89e-43c6-8dda-ccc72d0f8156","/videos/teach1.mp4", "/videos/teach2.mp4", "/videos/teach2.mp4"];
 
 
   let video = document.getElementById('my-video');
   let videoShow = document.getElementById('video');
+  let videoTeach = document.createElement("video");
+  document.body.appendChild(videoTeach);
+  videoTeach.setAttribute("width", "227");
+  videoTeach.setAttribute("height", "227");
+  videoTeach.setAttribute("loop", "loop");
+  videoTeach.setAttribute("id", "tranning");
+  videoTeach.setAttribute("autoplay", "autoplay");
+
+
+
+
+
+loopURls();
+
+function train(url, data, i,  callback) {
+  console.log("training");
+  console.log("PLAY");
+
+  setInterval(function() {
+    knn.addImage(videoTeach, data);
+    times++
+    if (times > 6 ) {
+      console.log("times > 6");
+      // clearInterval( intervalOne );
+      times = 0;
+      callback();
+    }
+  }, 5000 )
+}
+
+function changeVideo(i){
+
+  console.log("changing video to: " + urls[i]);
+  videoTeach.src = urls[0];
+  videoTeach.load();
+
+  console.log(videoTeach);
+  train(urls[i], i, i,loopURls)
+  console.log("2 segs");
+
+}
+
+function loopURls(){
+  console.log("running loop");
+  for (var i = 0; i < urls.length; i++){
+    console.log("i es:" +i);
+    changeVideo(i);
+    console.log("i es:" +i);
+  }
+
+}
+
+
+
+function stopInterval(interval) {
+  setTimeout(function( ) {
+    console.log("stop trainning: " + data);
+    clearInterval( interval );
+  }, 1000);
+}
 
   // Trainning with keyboard
   window.onkeyup = function(e) {
@@ -28,11 +86,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
    // Training Self Video
    if (key == 65) {
-     knn.addImage(video, 1);
-     var frame = captureVideoFrame('image', 'jpg');
+     console.log("preesed");
+     videoTeach.src = "/videos/teach1.mp4";
+     videoTeach.play()
+  var intervalOne = setInterval(function() {
+    knn.addImage(videoTeach, 1);
+       // knn.addImage(video, 1);
+  }, 2000 )
+
       times++;
-   }else if (key == 83) {
-     knn.addImage(video, 2);
+   }else if (key == 83){
+   console.log("preesed 2");
+   videoTeach.src = "/videos/teach2.mp4";
+   setInterval(function() {
+     knn.addImage(videoTeach, 2);
+        // knn.addImage(video, 1);
+   }, 2000 )
+
      times++;
    } else if (key == 68) {
      knn.addImage(video, 3);
@@ -50,14 +120,17 @@ document.addEventListener('DOMContentLoaded', function() {
 let knn = new p5ml.KNNImageClassifier(modelLoaded);
 
   setInterval(function() {
-    if (times > 10) {
+    console.log("corriendo");
+
+    if (times > 0) {
       knn.predict(video, function(data) {
+        console.log(data.classIndex);
         if (data.classIndex == 1) {
-          console.log('Position 01');
+          // console.log('Position 01');
           let position = 1;
 			    socket.emit('position', position);
         } else if (data.classIndex == 2) {
-          console.log('Position 02');
+          // console.log('Position 02');
           let position = 2;
           socket.emit('position', position);
         } else if (data.classIndex == 3) {
@@ -152,5 +225,5 @@ function clientsDisconnected(data) {
 }
 
 function positionServer(data) {
-  console.log("Position from Server:" + " " + data);
+  // console.log("Position from Server:" + " " + data);
 }

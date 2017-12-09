@@ -1,9 +1,6 @@
 "use strict";
 
 let socket;
-var mypeerid = null;
-var peer = null;
-var connection = null;
 let startPredicting = false;
 let times = 0;
 let y = 0;
